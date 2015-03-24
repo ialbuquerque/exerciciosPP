@@ -1,7 +1,6 @@
 package com;
 
-import static com.AutomobileType.AUTOMOBILE_TYPE_CAR;
-import static com.AutomobileType.AUTOMOBILE_TYPE_MOTORCYCLE;
+import static com.AutomobileType.*;
 
 /**
  * Created by isa on 3/24/15.
@@ -14,13 +13,15 @@ public class ResponseProcessor {
         if (response.equals("1")) {
             automobile.setType(AUTOMOBILE_TYPE_CAR);
             automobile.setNumberOfWheels(4);
-            MessageSender.sendAnswer(automobile);
+            IOHandler.sendAnswer(automobile);
         } else if (response.equals("2")) {
             automobile.setType(AUTOMOBILE_TYPE_MOTORCYCLE);
             automobile.setNumberOfWheels(2);
-            MessageSender.sendAnswer(automobile);
+            IOHandler.sendAnswer(automobile);
         } else {
-            System.out.printf(String.format("A opção %s não é válida. Por favor, tente novamente!", response));
+            IOHandler.sendErrorMessage(response);
         }
+
+        IOHandler.sendStartMessage();
     }
 }
